@@ -2,10 +2,8 @@ package com.infosys.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,9 +25,6 @@ public class Registration {
 	private Family family;
 	@JsonIgnore
 	@OneToOne(mappedBy = "registration")
-	private Message message;
-	@JsonIgnore
-	@OneToOne(mappedBy = "registration")
 	private Personal personal;
 	@Column(unique=true)
 	private String userName;
@@ -38,14 +33,13 @@ public class Registration {
 	public Registration() {
 		super();
 	}
-	public Registration(int rid, User user, Education education, Family family, Message message, Personal personal,
+	public Registration(int rid, User user, Education education, Family family, Personal personal,
 			String userName, String email, String password) {
 		super();
 		this.rid = rid;
 		this.user = user;
 		this.education = education;
 		this.family = family;
-		this.message = message;
 		this.personal = personal;
 		this.userName = userName;
 		this.email = email;
@@ -75,12 +69,6 @@ public class Registration {
 	public void setFamily(Family family) {
 		this.family = family;
 	}
-	public Message getMessage() {
-		return message;
-	}
-	public void setMessage(Message message) {
-		this.message = message;
-	}
 	public Personal getPersonal() {
 		return personal;
 	}
@@ -108,7 +96,7 @@ public class Registration {
 	@Override
 	public String toString() {
 		return "Registration [rid=" + rid + ", user=" + user + ", education=" + education + ", family=" + family
-				+ ", message=" + message + ", personal=" + personal + ", userName=" + userName + ", email=" + email
+				+ ", personal=" + personal + ", userName=" + userName + ", email=" + email
 				+ ", password=" + password + "]";
 	}
 	

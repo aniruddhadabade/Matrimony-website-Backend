@@ -1,12 +1,9 @@
 package com.infosys.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 
 @Entity
 public class Message {
@@ -14,10 +11,6 @@ public class Message {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int msgId;
-	@JsonBackReference
-	@OneToOne
-	@JoinColumn(name="rid")
-	private Registration registration;
 	private String fromUsername;
 	private String toUsername;
 	private String message;
@@ -27,7 +20,6 @@ public class Message {
 	public Message(int msgId, Registration registration, String fromUsername, String toUsername, String message) {
 		super();
 		this.msgId = msgId;
-		this.registration = registration;
 		this.fromUsername = fromUsername;
 		this.toUsername = toUsername;
 		this.message = message;
@@ -37,12 +29,6 @@ public class Message {
 	}
 	public void setMsgId(int msgId) {
 		this.msgId = msgId;
-	}
-	public Registration getRegistration() {
-		return registration;
-	}
-	public void setRegistration(Registration registration) {
-		this.registration = registration;
 	}
 	public String getFromUsername() {
 		return fromUsername;
@@ -64,7 +50,7 @@ public class Message {
 	}
 	@Override
 	public String toString() {
-		return "Message [msgId=" + msgId + ", registration=" + registration + ", fromUsername=" + fromUsername
+		return "Message [msgId=" + msgId + ", fromUsername=" + fromUsername
 				+ ", toUsername=" + toUsername + ", message=" + message + "]";
 	}
 	
