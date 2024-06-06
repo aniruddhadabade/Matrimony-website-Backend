@@ -2,6 +2,7 @@ package com.infosys.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,16 +16,16 @@ public class Registration {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int rid;
 	@JsonIgnore
-	@OneToOne(mappedBy = "registration")
+	@OneToOne(mappedBy = "registration" , cascade = CascadeType.ALL, orphanRemoval = true)
 	private User user;
 	@JsonIgnore
-	@OneToOne(mappedBy = "registration")
+	@OneToOne(mappedBy = "registration", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Education education;
 	@JsonIgnore
-	@OneToOne(mappedBy = "registration")
+	@OneToOne(mappedBy = "registration", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Family family;
 	@JsonIgnore
-	@OneToOne(mappedBy = "registration")
+	@OneToOne(mappedBy = "registration", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Personal personal;
 	@Column(unique=true)
 	private String userName;
