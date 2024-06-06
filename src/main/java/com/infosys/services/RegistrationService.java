@@ -43,8 +43,12 @@ public class RegistrationService implements RegistrationInterface{
         return null; 
     }
 
+	@Transactional
     public void deleteRegistration(int rid) {
-        repository.deleteById(rid);
+        Registration registration = repository.findById(rid).orElse(null);
+        if (registration != null) {
+            repository.delete(registration);
+        }
     }
     
     @Override
