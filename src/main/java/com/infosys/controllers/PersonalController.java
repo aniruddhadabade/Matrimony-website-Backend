@@ -65,13 +65,25 @@ public class PersonalController {
         return new ResponseEntity<>(personal, HttpStatus.OK);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Personal> updatePersonalInfo(@PathVariable Integer id, @RequestBody Personal updatedPersonalInfo) {
-        Personal personal = personalInfoService.updatePersonal(id, updatedPersonalInfo);
-        if (personal != null) {
-            return new ResponseEntity<>(personal, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    @PutMapping(value = "/{id}", consumes = {"multipart/form-data"})
+    public ResponseEntity<?> updatePersonalInfo(
+            @PathVariable Integer id,
+            @RequestParam(value = "file", required = false) MultipartFile file,
+            @RequestParam("bloodGroup") String bloodGroup,
+            @RequestParam("registration") String registrationJson) {
+        try {
+            // Convert the registration JSON string to Registration object
+            ObjectMapper objectMapper = new ObjectMapper();
+            Registration registration = objectMapper.readValue(registrationJson, Registration.class);
+
+            Personal updatedPersonalInfo = personalInfoService.updatePersonalInfo(id, file, bloodGroup, registration);
+            if (updatedPersonalInfo != null) {
+                return new ResponseEntity<>(updatedPersonalInfo, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>("Failed to update personal info: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

@@ -15,6 +15,6 @@ public interface PersonalInterface {
     Personal createPersonal(Registration registration, MultipartFile file, String bloodGroup) throws IOException;
     Personal getPersonalById(Integer id);
     List<Personal> getAllPersonal();
-    Personal updatePersonal(Integer id, Personal updatedPersonal);
+    Personal updatePersonalInfo(Integer id, MultipartFile file, String bloodGroup, Registration registration)  throws IOException;
     void deletePersonal(Integer id);
 }
