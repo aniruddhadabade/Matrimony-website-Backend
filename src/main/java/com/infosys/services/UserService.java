@@ -35,6 +35,9 @@ public class UserService implements UserServiceInterface {
 	        if (existingUser != null) {
 	            existingUser.setFirstName(newUser.getFirstName());
 	            existingUser.setLastName(newUser.getLastName());
+	            existingUser.setAge(newUser.getAge());
+	            existingUser.setGender(newUser.getGender());
+	            existingUser.setDateOfBirth(newUser.getDateOfBirth());
 	            return repository.save(existingUser);
 	        }
 	        return null;

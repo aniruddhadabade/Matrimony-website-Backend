@@ -31,7 +31,7 @@ public class RegistrationService implements RegistrationInterface{
 		return repository.findById(id).orElse(null);
 	}
 	
-	@Transactional
+	@Override
     public Registration updateRegistration(int rid, Registration newRegistration) {
         Registration existingRegistration = repository.findById(rid).orElse(null);
         if (existingRegistration != null) {
@@ -42,7 +42,7 @@ public class RegistrationService implements RegistrationInterface{
         }
         return null; 
     }
-
+	
 	@Transactional
     public void deleteRegistration(int rid) {
         Registration registration = repository.findById(rid).orElse(null);

@@ -46,10 +46,17 @@ public class PersonalService implements PersonalInterface {
     }
  
     @Override
-    public Personal updatePersonal(Integer personalId, Personal updatedPersonal) {
-        if (repository.existsById(personalId)) {
-            updatedPersonal.setPersonalId(personalId);;
-            return repository.save(updatedPersonal);
+    public Personal updatePersonalInfo(Integer id, MultipartFile file, String bloodGroup, Registration registration) throws IOException {
+        Personal personal = repository.findById(id).orElse(null);
+        if (personal != null) {
+            personal.setBloodGroup(bloodGroup);
+            personal.setRegistration(registration);
+
+            if (file != null && !file.isEmpty()) {
+                personal.setPhotograph(file.getBytes());
+            }
+
+            return repository.save(personal);
         }
         return null; 
     }

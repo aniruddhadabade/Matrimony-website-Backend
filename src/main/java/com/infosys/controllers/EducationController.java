@@ -24,31 +24,31 @@ import com.infosys.services.EducationService;
 public class EducationController {
 
 	@Autowired// used for dependency injection
-	EducationService educationCareerService;
+	EducationService service;
 	
 	@GetMapping("/edu")
 	public List<Education> getAllEducation(){
-		return educationCareerService.getAllEducation();
+		return service.getAllEducation();
 	}
 	
 	@PostMapping("/edu")
 	public Education addEducation(@RequestBody Education education) {
-		return educationCareerService.addEducation(education);
+		return service.addEducation(education);
 	}
 	
 	@GetMapping("/edu/{id}")
 	public Education getEducationById(@PathVariable("id") int id) {
-		return educationCareerService.getEducationById(id);
+		return service.getEducationById(id);
 	}
 	
 	 @PutMapping("/edu/{id}")
 	    public Education updateUser(@PathVariable("id") int id, @RequestBody Education education) {
-	        return educationCareerService.updateEducation(id, education);
+	        return service.updateEducation(id, education);
 	    }
 	    
     @DeleteMapping("/edu/{id}")
     public ResponseEntity<Void> deleteEducation(@PathVariable("id") int id) {
-    	educationCareerService.deleteEducation(id);
+    	service.deleteEducation(id);
         return ResponseEntity.noContent().build();
     }
 	
