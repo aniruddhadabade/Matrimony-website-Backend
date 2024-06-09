@@ -36,7 +36,7 @@ public class RegistrationController {
 		return service.addRegistration(registration);
 	}
 	
-	@GetMapping("/rege/id/{id}")
+	@GetMapping("/rege/{id}")
 	public Registration getRegistrationInfoById(@PathVariable("id") int id) {
 		return service.getRegistrationInfoById(id);
 	}

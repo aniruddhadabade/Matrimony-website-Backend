@@ -36,7 +36,6 @@ public class FamilyService implements FamilyInterface{
             existingFamily.setFamilyStatus(newFamily.getFamilyStatus());
             existingFamily.setFamilyType(newFamily.getFamilyType());
             existingFamily.setFatherName(newFamily.getFatherName());
-            // Set other fields as needed
             return repository.save(existingFamily);
         }
         return null;

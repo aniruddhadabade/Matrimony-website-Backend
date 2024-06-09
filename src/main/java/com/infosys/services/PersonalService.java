@@ -48,7 +48,9 @@ public class PersonalService implements PersonalInterface {
     @Override
     public Personal updatePersonal(Integer personalId, Personal updatedPersonal) {
         if (repository.existsById(personalId)) {
-            updatedPersonal.setPersonalId(personalId);;
+            updatedPersonal.setPersonalId(personalId);
+            updatedPersonal.setPhotograph(updatedPersonal.getPhotograph());
+            updatedPersonal.setBloodGroup(updatedPersonal.getBloodGroup());
             return repository.save(updatedPersonal);
         }
         return null; 
