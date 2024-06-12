@@ -5,10 +5,9 @@ import java.util.List;
 import com.infosys.entities.Message;
 
 public interface MessageInterface {
-	
-	public List<Message> getAllMessage();
-	public Message addMessage(Message message);
-	public Message getMessageById(int id);
-	Message updateMessage(int id, Message message); 
-	void deleteMessage(int id);
+	Message saveMessage(Message message);
+	Message getMessageById(Integer id);
+	List<Message> getAllMessages();
+	Message updateMessage(Integer id, Message updatedMessage);
+	void deleteMessage(Integer id);
 }

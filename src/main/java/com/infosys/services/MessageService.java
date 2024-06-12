@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.infosys.entities.Message;
 import com.infosys.repositories.MessageRepository;
 
@@ -12,37 +11,34 @@ import com.infosys.repositories.MessageRepository;
 public class MessageService implements MessageInterface{
     
     @Autowired
-    MessageRepository repository;
+    private MessageRepository repository;
 
     @Override
-    public List<Message> getAllMessage() {
-        return repository.findAll();
-    }
-
-    @Override
-    public Message addMessage(Message message) {
+    public Message saveMessage(Message message) {
         return repository.save(message);
     }
 
     @Override
-    public Message getMessageById(int id) {
+    public Message getMessageById(Integer id) {
         return repository.findById(id).orElse(null);
     }
 
     @Override
-    public Message updateMessage(int id, Message newMessage) {
-        Message existingMessage = repository.findById(id).orElse(null);
-        if (existingMessage != null) {
-            existingMessage.setFromUsername(newMessage.getFromUsername());
-            existingMessage.setToUsername(newMessage.getToUsername());
-            existingMessage.setMessage(newMessage.getMessage());
-            return repository.save(existingMessage);
-        }
-        return null;
+    public List<Message> getAllMessages() {
+        return repository.findAll();
     }
 
     @Override
-    public void deleteMessage(int id) {
+    public Message updateMessage(Integer id, Message updatedMessage) {
+        if (repository.existsById(id)) {
+        	updatedMessage.setMsgId(id); 
+            return repository.save(updatedMessage);
+        }
+        return null; 
+    }
+
+    @Override
+    public void deleteMessage(Integer id) {
         repository.deleteById(id);
     }
 }

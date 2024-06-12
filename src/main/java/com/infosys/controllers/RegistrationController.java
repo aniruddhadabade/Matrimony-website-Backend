@@ -50,6 +50,15 @@ public class RegistrationController {
 	            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	        }
 	    }
+	 @GetMapping("/email/{email}")
+	    public ResponseEntity<Registration> findByEmail(@PathVariable String email) {
+	        Registration registration = service.findByEmail(email);
+	        if (registration != null) {
+	            return new ResponseEntity<>(registration, HttpStatus.OK);
+	        } else {
+	            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	        }
+	    }
 	
 	 @PutMapping("/rege/{id}")
 	    public Registration updateRegistration(@PathVariable("id") int id, @RequestBody Registration registration) {
