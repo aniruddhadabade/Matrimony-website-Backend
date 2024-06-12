@@ -55,5 +55,10 @@ public class RegistrationService implements RegistrationInterface{
     public Registration findByUserName(String userName) {
         return repository.findByUserName(userName).orElse(null);
     }
+    
+    @Override
+    public Registration findByEmail(String email) {
+        return repository.findByEmail(email).orElse(null);
+    }
 	
 }

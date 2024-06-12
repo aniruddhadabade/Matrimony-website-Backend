@@ -13,4 +13,5 @@ public interface RegistrationInterface {
 	Registration updateRegistration(int id, Registration registration);
     void deleteRegistration(int id);
     Registration findByUserName(String userName);
+    Registration findByEmail(String email);
 }
